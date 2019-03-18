@@ -184,10 +184,24 @@ static int fill_inode(struct inode *inode, int isdir)
 	if (!err) {
 		/* setup the new inode */
 		if (S_ISREG(inode->i_mode)) {
+<<<<<<< HEAD
 			inode->i_op = &erofs_generic_iops;
 			inode->i_fop = &generic_ro_fops;
 		} else if (S_ISDIR(inode->i_mode)) {
 			inode->i_op = &erofs_dir_iops;
+=======
+#ifdef CONFIG_EROFS_FS_XATTR
+			inode->i_op = &erofs_generic_xattr_iops;
+#endif
+			inode->i_fop = &generic_ro_fops;
+		} else if (S_ISDIR(inode->i_mode)) {
+			inode->i_op =
+#ifdef CONFIG_EROFS_FS_XATTR
+				&erofs_dir_xattr_iops;
+#else
+				&erofs_dir_iops;
+#endif
+>>>>>>> 
 			inode->i_fop = &erofs_dir_fops;
 		} else if (S_ISLNK(inode->i_mode)) {
 			/* by default, page_get_link is used for symlink */

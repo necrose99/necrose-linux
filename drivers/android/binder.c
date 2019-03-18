@@ -3153,11 +3153,19 @@ static void binder_transaction(struct binder_proc *proc,
 				    ALIGN(tr->offsets_size, sizeof(void *)) +
 				    ALIGN(extra_buffers_size, sizeof(void *)) -
 				    ALIGN(secctx_sz, sizeof(u64));
+<<<<<<< HEAD
 
 		t->security_ctx = (uintptr_t)t->buffer->user_data + buf_offset;
 		binder_alloc_copy_to_buffer(&target_proc->alloc,
 					    t->buffer, buf_offset,
 					    secctx, secctx_sz);
+=======
+		char *kptr = t->buffer->data + buf_offset;
+
+		t->security_ctx = (uintptr_t)kptr +
+		    binder_alloc_get_user_buffer_offset(&target_proc->alloc);
+		memcpy(kptr, secctx, secctx_sz);
+>>>>>>> 
 		security_release_secctx(secctx, secctx_sz);
 		secctx = NULL;
 	}
@@ -4467,7 +4475,13 @@ retry:
 		}
 		trd->data_size = t->buffer->data_size;
 		trd->offsets_size = t->buffer->offsets_size;
+<<<<<<< HEAD
 		trd->data.ptr.buffer = (uintptr_t)t->buffer->user_data;
+=======
+		trd->data.ptr.buffer = (binder_uintptr_t)
+			((uintptr_t)t->buffer->data +
+			binder_alloc_get_user_buffer_offset(&proc->alloc));
+>>>>>>> 
 		trd->data.ptr.offsets = trd->data.ptr.buffer +
 					ALIGN(t->buffer->data_size,
 					    sizeof(void *));

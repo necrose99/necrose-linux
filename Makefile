@@ -1,8 +1,14 @@
 # SPDX-License-Identifier: GPL-2.0
 VERSION = 5
+<<<<<<< HEAD
 PATCHLEVEL = 1
 SUBLEVEL = 0
 EXTRAVERSION = -rc1
+=======
+PATCHLEVEL = 0
+SUBLEVEL = 2
+EXTRAVERSION =
+>>>>>>> 
 NAME = Shy Crocodile
 
 # *DOCUMENTATION*
