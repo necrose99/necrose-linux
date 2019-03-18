@@ -433,12 +433,18 @@ static int pcie_pme_resume(struct pcie_device *srv)
  */
 static void pcie_pme_remove(struct pcie_device *srv)
 {
+<<<<<<< HEAD
 	struct pcie_pme_service_data *data = get_service_data(srv);
 
 	pcie_pme_disable_interrupt(srv->port, data);
 	free_irq(srv->irq, srv);
 	cancel_work_sync(&data->work);
 	kfree(data);
+=======
+	pcie_pme_suspend(srv);
+	free_irq(srv->irq, srv);
+	kfree(get_service_data(srv));
+>>>>>>> 
 }
 
 static struct pcie_port_service_driver pcie_pme_driver = {

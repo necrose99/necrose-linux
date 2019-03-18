@@ -451,6 +451,14 @@ static int sirf_probe(struct serdev_device *serdev)
 		ret = regulator_enable(data->vcc);
 		if (ret)
 			goto err_put_device;
+<<<<<<< HEAD
+=======
+		}
+
+		ret = regulator_enable(data->vcc);
+		if (ret)
+			goto err_put_device;
+>>>>>>> 
 
 		/* Wait for chip to boot into hibernate mode. */
 		msleep(SIRF_BOOT_DELAY);
@@ -460,11 +468,14 @@ static int sirf_probe(struct serdev_device *serdev)
 		ret = gpiod_get_value_cansleep(data->wakeup);
 		if (ret < 0)
 			goto err_disable_vcc;
+<<<<<<< HEAD
 		data->active = ret;
 
 		ret = gpiod_to_irq(data->wakeup);
 		if (ret < 0)
 			goto err_disable_vcc;
+=======
+>>>>>>> 
 		data->irq = ret;
 
 		ret = request_threaded_irq(data->irq, NULL, sirf_wakeup_handler,
@@ -472,6 +483,7 @@ static int sirf_probe(struct serdev_device *serdev)
 				"wakeup", data);
 		if (ret)
 			goto err_disable_vcc;
+<<<<<<< HEAD
 	}
 
 	if (data->on_off) {
@@ -495,6 +507,8 @@ static int sirf_probe(struct serdev_device *serdev)
 				goto err_free_irq;
 			}
 		}
+=======
+>>>>>>> 
 	}
 
 	if (IS_ENABLED(CONFIG_PM)) {
