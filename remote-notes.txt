@@ -1,0 +1,10 @@
+pray my git thumbery can get patches. from many kernel 
+branches.. 
+bit of thumbs merging git repos as is.. 
+hopefully can git diff remotes then git am and not break sh!@#$.. 
+
+
+anycase  a few remotes used. 
+git remote add upstream https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git
+  git remote add rock64 https://github.com/ayufan-rock64/linux-kernel.git
+  git remote add kernel-security git://git.kernel.org/pub/scm/linux/kernel/git/jmorris/linux-security.git
