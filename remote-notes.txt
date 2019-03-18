@@ -8,3 +8,19 @@ anycase  a few remotes used.
 git remote add upstream https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git
   git remote add rock64 https://github.com/ayufan-rock64/linux-kernel.git
   git remote add kernel-security git://git.kernel.org/pub/scm/linux/kernel/git/jmorris/linux-security.git
+  
+ https://dev.gentoo.org/~mpagano/genpatches/
+ ## Gentoo Linux patches. (Normaly  handedled by Emerge pentoo-sources or gentoo-srcs.... but pushing diffs into git..as a one off..) 
+ 
+ Pentoo Patches PENPATCHES_URI="http://dev.pentoo.ch/~zero/distfiles/${PENPATCHES}"
+ Normaly  handedled by Emerge pentoo-sources , however for off the cuff..
+ 
+ cat pentoo***** patchs >> t-combined-pentoo-patches...   git am or git patch use..
+ 
+ 
+ Some Grsec patches 
+ https://github.com/dapperlinux/dapper-secure-kernel-patchset-stable/releases 
+ other sec, fixes.. 
+ 
+ Build Debian pkgs , need to look for tarball also (gentoo image works.)  
+fakeroot make-kpkg --initrd --revision=rockpro64 kernel_image kernel_headers -j`nproc` 
